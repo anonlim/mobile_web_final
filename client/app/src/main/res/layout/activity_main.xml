@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.anonlim.yolo5v.ResultViewModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/main_actionbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height = "wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorOnSecondary"
+                app:title="@string/main"
+                app:titleTextColor="@color/white"
+                app:logo="@drawable/ic_detection"
+                >
+                <ImageButton
+                    android:id = "@+id/options_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="12dp"
+                    android:src ="@drawable/ic_option"
+                    android:background = "#00000000"
+                    />
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id= "@+id/result_image"
+            android:layout_width="320dp"
+            android:layout_height="180dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:imageUrl="@{viewmodel.result.imageUrl}"
+            android:scaleType = "fitCenter"
+            tools:src="@drawable/ic_detection"
+            />
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/result_image"
+            app:layout_constraintStart_toStartOf="@id/result_image"
+            app:layout_constraintEnd_toEndOf="@id/result_image"
+            android:padding="5dp"
+            android:gravity ="center_vertical"
+            android:text = "@{`감지된 물체: ` + viewmodel.result.text}"
+            tools:text= "Hello World"
+            />
+
+        <ImageButton
+            android:id="@+id/source_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@{viewmodel.detecting ? @drawable/ic_stop : @drawable/ic_start}"
+            android:background="@drawable/btn_background"
+            android:layout_margin="24dp"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
